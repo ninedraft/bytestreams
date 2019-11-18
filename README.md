@@ -9,7 +9,7 @@
 
 ## ProxyWriter
 
-Package: [`github.com/ninedraft/bytestreams/proxywriter`](/proxywriter)
+Package: [`github.com/ninedraft/bytestreams/pkg/bytestreams`](/pkg/bytestreams)
 
 ProxyWriter is an implementation of an *error writer*, described in Dave Cheney's blogpost [Eliminate error handling by eliminating errors](https://dave.cheney.net/2019/01/27/eliminate-error-handling-by-eliminating-errors).
 
