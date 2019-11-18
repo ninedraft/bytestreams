@@ -1,6 +1,6 @@
 # Bytestreams
 
-![[godoc](https://godoc.org/github.com/ninedraft/pkg/bytestreams)](https://godoc.org/github.com/ninedraft/bytestreams/?status.svg)
+![[godoc](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams)](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams/?status.svg)
 
 
 - [Bytestreams](#bytestreams)
