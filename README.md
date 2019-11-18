@@ -1,12 +1,13 @@
 # Bytestreams
 
+[![godoc](https://godoc.org/github.com/ninedraft/bytestreams/?status.svg)](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams)
+
+
 - [Bytestreams](#bytestreams)
   - [ProxyWriter](#proxywriter)
     - [Usage](#usage)
 
 ## ProxyWriter
-
-[![godoc](https://godoc.org/github.com/ninedraft/bytestreams?status.svg)](https://godoc.org/github.com/ninedraft/bytestreams/proxywriter)
 
 Package: [`github.com/ninedraft/bytestreams/proxywriter`](/proxywriter)
 
