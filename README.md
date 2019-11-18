@@ -1,6 +1,6 @@
 # Bytestreams
 
-[![](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams?status.svg)](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams) [![](https://goreportcard.com/badge/github.com/ninedraft/bytestreams)](https://goreportcard.com/report/github.com/ninedraft/bytestreams) ![](https://img.shields.io/badge/license-Apache-blue) ![](https://img.shields.io/github/go-mod/go-version/ninedraft/bytestreams) [![](https://img.shields.io/gitter/room/ninedraft/bytestreams)](https://gitter.im/go-bytestreams/community)
+[![](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams?status.svg)](https://godoc.org/github.com/ninedraft/bytestreams/pkg/bytestreams) [![](https://goreportcard.com/badge/github.com/ninedraft/bytestreams)](https://goreportcard.com/report/github.com/ninedraft/bytestreams) ![](https://img.shields.io/badge/license-Apache-blue) ![](https://img.shields.io/github/go-mod/go-version/ninedraft/bytestreams) [![](https://img.shields.io/gitter/room/ninedraft/bytestreams)](https://gitter.im/go-bytestreams/community) [![](https://img.shields.io/badge/golangci--lint-report-blueviolet)](https://golangci.com/r/github.com/ninedraft/bytestreams)
 
 - [Bytestreams](#bytestreams)
   - [ProxyWriter](#proxywriter)
