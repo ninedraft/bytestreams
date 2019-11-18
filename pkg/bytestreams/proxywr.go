@@ -1,4 +1,4 @@
-package proxywriter
+package bytestreams
 
 import (
 	"fmt"
@@ -8,32 +8,14 @@ import (
 // ProxyWriter describes a wrapper around io.Writer, which can be used to write multiple chunks of data.
 // It can be good idea to use ProxyWriter with bufio.Writer as backend to increase throughput.
 type ProxyWriter struct {
-	err         error
-	written     int64
-	wr          io.Writer
-	onClose     func() error
-	onFlush     func() error
-	reduceError func(next, prev error) error
+	err     error
+	written int64
+	wr      io.Writer
+	config
 }
 
-// Option is an optional configuration for ProxyWriter.
-type Option func(pw *ProxyWriter)
-
-func nop() error {
-	return nil
-}
-
-func nopReduce(_, prev error) error {
-	return prev
-}
-
-// Flusher describes type, which interanl buffer can be flushed.
-type Flusher interface {
-	Flush() error
-}
-
-// New creates a new ProxyWriter with backend writer and options.
-func New(wr io.Writer, options ...Option) *ProxyWriter {
+// NewProxyWriter creates a new ProxyWriter with backend writer and options.
+func NewProxyWriter(wr io.Writer, options ...Option) *ProxyWriter {
 	// if we just a thin layer over another proxy writer, when just
 	// return the backend proxy writer. So multiple nested New calls
 	// will not fill app stack with useless proxy writers.
@@ -41,10 +23,12 @@ func New(wr io.Writer, options ...Option) *ProxyWriter {
 		return pw
 	}
 	var pw = &ProxyWriter{
-		wr:          wr,
-		onClose:     nop,
-		onFlush:     nop,
-		reduceError: nopReduce,
+		wr: wr,
+		config: config{
+			onClose:      noopCallback,
+			onFlush:      noopCallback,
+			reduceErrors: func(_, old error) error { return old },
+		},
 	}
 	if closer, isCloser := wr.(io.Closer); isCloser {
 		pw.onClose = closer.Close
@@ -53,7 +37,7 @@ func New(wr io.Writer, options ...Option) *ProxyWriter {
 		pw.onFlush = flusher.Flush
 	}
 	for _, setOption := range options {
-		setOption(pw)
+		setOption(&pw.config)
 	}
 	return pw
 }
