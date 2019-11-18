@@ -1,0 +1,132 @@
+run:
+  deadline: 1m
+  issues-exit-code: 1
+  tests: true
+  build-tags:
+  skip-dirs:
+  skip-files:
+  modules-download-mode: readonly
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters-settings:
+  dupl:
+    threshold: 100
+
+  errcheck:
+    check-type-assertions: false
+    check-blank: false
+
+  goconst:
+    min-len: 3
+    min-occurrences: 3
+
+  gocritic:
+    enabled-checks:
+      - appendAssign
+      - appendCombine
+      - assignOp
+      - boolExprSimplify
+      - builtinShadow
+      - captLocal
+      - caseOrder
+      - commentFormatting
+      - commentedOutCode
+      - commentedOutImport
+      - defaultCaseOrder
+      - deprecatedComment
+      - docStub
+      - dupBranchBody
+      - dupCase
+      - elseif
+      - emptyFallthrough
+      - emptyStringTest
+      - equalFold
+      - exitAfterDefer
+      - flagDeref
+      - flagName
+      - hexLiteral
+      - ifElseChain
+      - importShadow
+      - indexAlloc
+      - initClause
+      - methodExprCall
+      - paramTypeCombine
+      - ptrToRefParam
+      - rangeExprCopy
+      - rangeValCopy
+      - regexpMust
+      - singleCaseSwitch
+      - sloppyLen
+      - sloppyReassign
+      - stringXbytes
+      - switchTrue
+      - typeAssertChain
+      - typeSwitchVar
+      - typeUnparen
+      - underef
+      - unlabelStmt
+      - unlambda
+      - unnecessaryBlock
+      - unslice
+      - valSwap
+      - weakCond
+      - wrapperFunc
+    # - yodaStyleExpr
+    settings:
+      captLocal:
+        paramsOnly: true
+      rangeValCopy:
+        sizeThreshold: 128 # single cache line size
+        skipTestFuncs: true
+
+  gocyclo:
+    min-complexity: 10
+
+  gofmt:
+    simplify: true
+
+  goimports:
+    local-prefixes: messa.io/primitives
+
+  golint:
+    min-confidence: 0.8
+
+linters:
+  disable-all: true
+  enable:
+    - deadcode
+    - dupl
+    - errcheck
+    - ineffassign
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - golint
+    - gosec
+    - lll
+    - unconvert
+    - vet
+  fast: false
+
+issues:
+  exclude-rules:
+    - path: "_test.go"
+      linters:
+        - gosec
+        - unused
+        - deadcode
+        - varcheck
+        - structcheck
+    - linters:
+        - lll
+      source: "^//go:generate "
+
+  exclude-use-default: false
+  max-issues-per-linter: 0
+  max-same-issues: 0
