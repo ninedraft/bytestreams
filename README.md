@@ -42,7 +42,7 @@ func (user *User) WriteTo(wr io.Writer) (int64, error) {
 
 Package: [`github.com/ninedraft/bytestreams/pkg/bytestreams`](/pkg/bytestreams)
 
-StackWriter is a chain of bytestream converters. It can be used to build chains like `json.Encoder`->`tar.Writer`->`gzip.Writer`->`bufio.Writer`->`net.Conn` with automatic `.Flush` and `.Close` method handling.
+StackWriter is a chain of bytestream converters. It can be used to build chains like `json.Encoder`->`gzip.Writer`->`bufio.Writer`->`net.Conn` with automatic `.Flush` and `.Close` method handling.
 
 ### StackWriter usage
 
@@ -62,7 +62,6 @@ var wr = bytestreams.NewStackWriter(conn).
         // all encoders will be flushed and closed automagically
         func(wr io.Writer) io.Writer { return bufio.Writer(wr) },
         func(wr io.Writer) io.Writer { return gzip.Writer(wr) },
-        func(wr io.Writer) io.Writer { return tar.Writer(wr) },
     )
 defer wr.Close()
 
