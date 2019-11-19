@@ -50,6 +50,8 @@ StackWriter is a chain of bytestream converters. It can be used to build chains 
 import (
     "github.com/ninedraft/bytestreams/pkg/bytestreams"
     "net"
+    "archive/tar"
+    "compress/gzip"
 )
 
 var conn, errDial = net.Dial("tcp", "$ADDR")
