@@ -52,13 +52,6 @@ import (
     "net"
 )
 
-type User struct {
-    Name             string
-    Topics           []string
-    AdditionalData   []byte
-}
-
-
 var conn, errDial = net.Dial("tcp", "$ADDR")
 //...
 
