@@ -60,8 +60,8 @@ func BenchmarkRepeaterCopyHalf(bench *testing.B) {
 	var buf = make([]byte, len(testdata)/2)
 	bench.ReportAllocs()
 	for i := 0; i < bench.N; i++ {
-		repeater.Read(buf)
-		ioutil.Discard.Write(buf)
+		_, _ = repeater.Read(buf)
+		_, _ = ioutil.Discard.Write(buf)
 	}
 }
 
@@ -74,8 +74,8 @@ func BenchmarkRepeaterCopyExact(bench *testing.B) {
 	var buf = make([]byte, n)
 	bench.ReportAllocs()
 	for i := 0; i < bench.N; i++ {
-		repeater.Read(buf)
-		ioutil.Discard.Write(buf)
+		_, _ = repeater.Read(buf)
+		_, _ = ioutil.Discard.Write(buf)
 	}
 }
 
@@ -88,7 +88,7 @@ func BenchmarkRepeaterCopyLarge(bench *testing.B) {
 	var buf = make([]byte, 3*n+1)
 	bench.ReportAllocs()
 	for i := 0; i < bench.N; i++ {
-		repeater.Read(buf)
-		ioutil.Discard.Write(buf)
+		_, _ = repeater.Read(buf)
+		_, _ = ioutil.Discard.Write(buf)
 	}
 }
