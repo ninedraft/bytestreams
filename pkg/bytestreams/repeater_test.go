@@ -3,6 +3,7 @@ package bytestreams_test
 import (
 	"bytes"
 	"io"
+	"io/ioutil"
 	"strings"
 	"testing"
 	"testing/iotest"
@@ -51,4 +52,43 @@ func TestRepeater_Read(test *testing.T) {
 	testRead("long read 10", 10*len(testdata))
 	testRead("long read 10 single byte reader", 10*len(testdata),
 		iotest.OneByteReader)
+}
+
+func BenchmarkRepeaterCopyHalf(bench *testing.B) {
+	const testdata = "testdata"
+	var repeater = bytestreams.NewRepeater([]byte(testdata))
+	var buf = make([]byte, len(testdata)/2)
+	bench.ReportAllocs()
+	for i := 0; i < bench.N; i++ {
+		repeater.Read(buf)
+		ioutil.Discard.Write(buf)
+	}
+}
+
+func BenchmarkRepeaterCopyExact(bench *testing.B) {
+	const (
+		testdata = "testdata"
+	)
+	var n = int64(len(testdata))
+	var repeater = bytestreams.NewRepeater([]byte(testdata))
+	var buf = make([]byte, n)
+	bench.ReportAllocs()
+	for i := 0; i < bench.N; i++ {
+		repeater.Read(buf)
+		ioutil.Discard.Write(buf)
+	}
+}
+
+func BenchmarkRepeaterCopyLarge(bench *testing.B) {
+	const (
+		testdata = "testdata"
+	)
+	var n = int64(len(testdata))
+	var repeater = bytestreams.NewRepeater([]byte(testdata))
+	var buf = make([]byte, 3*n+1)
+	bench.ReportAllocs()
+	for i := 0; i < bench.N; i++ {
+		repeater.Read(buf)
+		ioutil.Discard.Write(buf)
+	}
 }
