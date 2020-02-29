@@ -11,7 +11,6 @@ import (
 	"github.com/ninedraft/bytestreams/pkg/bytestreams"
 )
 
-// TODO: add a variadic buf reader
 func TestRepeater_Read(test *testing.T) {
 	// "Harry Potter and the Methods of Rationality"
 	// http://www.hpmor.com/chapter/1
